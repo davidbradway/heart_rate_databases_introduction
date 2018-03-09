@@ -9,9 +9,9 @@ app = Flask(__name__)
 connect("mongodb://localhost:27017/bme590") # connect to database
 
 class HeartRate(MongoModel):
-    user_email = fields.EmailField(primary_key=True),
-    user_age = fields.IntegerField(),
-    heart_rate = fields.FloatField(),
+    user_email = fields.EmailField(primary_key=True)
+    user_age = fields.IntegerField()
+    heart_rate = fields.FloatField()
     time = fields.DateTimeField()
 
 @app.route("/api/heart_rate", methods=["POST"])
@@ -22,7 +22,7 @@ def set_heart_rate():
                    heart_rate=r["heart_rate"],
                    time=datetime.datetime.now())
     hr.save()
-    return jsonify({"Result": "saved"}), 200
+    return jsonify({"result": "saved"}), 200
 
 def helper_get_by_email(user_email):
     """
