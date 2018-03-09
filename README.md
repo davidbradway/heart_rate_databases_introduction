@@ -2,6 +2,15 @@
 
 ## Setup
 
+MongoDB:
+
+```bash
+docker run mongo
+docker run -v $PWD/db:/data/db -p 27017:27017 mongo
+```
+
+Flask RESTful API
+
 ```bash
 virtualenv -p python3 env
 source env/bin/activate
