@@ -17,15 +17,18 @@ class HeartRate(MongoModel):
 @app.route("/api/heart_rate", methods=["POST"])
 def set_heart_rate():
     r = request.get_json() # parses the POST request body as JSON
-    hr = HeartRate(r["user_email"],
+    hr = HeartRate(user_email=r["user_email"],
                    user_age=r["user_age"],
                    heart_rate=r["heart_rate"],)
-                   #time=datetime.datetime.now())
+                   time=datetime.datetime.now())
     hr.save()
     return jsonify({"Result": "saved"}), 200
 
 def helper_get_by_email(user_email):
-    return HeartRate.objects.raw({"user_email":user_email})
+    """
+    Queries and returns all HearRate objects by given user_email
+    """
+    return HeartRate.objects.raw({"user_email": user_email})
 
 @app.route("/api/heart_rate/<user_email>", methods=["GET"])
 def get_by_email(user_email):
@@ -49,7 +52,7 @@ def get_average_by_email(user_email):
     if count != 0:
         return jsonify({"average": total/count}), 200
     else:
-        return jsonift({"error": "no entries"}), 400
+        return jsonify({"error": "no entries"}), 400
 
 @app.route("/api/heart_rate/interval_average", methods=["POST"])
 def get_average_by_email_since():
