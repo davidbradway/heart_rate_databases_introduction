@@ -19,7 +19,7 @@ def set_heart_rate():
     r = request.get_json() # parses the POST request body as JSON
     hr = HeartRate(user_email=r["user_email"],
                    user_age=r["user_age"],
-                   heart_rate=r["heart_rate"],)
+                   heart_rate=r["heart_rate"],
                    time=datetime.datetime.now())
     hr.save()
     return jsonify({"Result": "saved"}), 200
