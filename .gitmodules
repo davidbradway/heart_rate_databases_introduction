@@ -1,0 +1,3 @@
+[submodule "heart_rate_databases_starter"]
+	path = heart_rate_databases_starter
+	url = git@github.com:suyashkumar/heart_rate_databases_starter.git
